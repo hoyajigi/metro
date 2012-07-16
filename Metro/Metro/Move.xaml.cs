@@ -15,6 +15,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+using NotificationsExtensions.ToastContent;
+using Windows.UI.Notifications;
+using Windows.UI.Popups;
 
 namespace Metro
 {
@@ -24,15 +27,62 @@ namespace Metro
     public sealed partial class Move : Metro.Common.LayoutAwarePage
     {
         private Geolocator _geolocator = null;
+/*        DispatcherTimer toastTimer = new DispatcherTimer()
+        {
+            Interval = TimeSpan.FromSeconds(10)
+        };*/
+        DispatcherTimer mapTimer = new DispatcherTimer()
+        {
+            Interval = TimeSpan.FromSeconds(15)
+        };
         public Move()
         {
             this.InitializeComponent();
             _geolocator = new Geolocator();
             _geolocator.PositionChanged -= new TypedEventHandler<Geolocator, PositionChangedEventArgs>(OnPositionChanged);
 //            _geolocator.StatusChanged -= new TypedEventHandler<Geolocator, StatusChangedEventArgs>(OnStatusChanged);
+           this.Loaded+=Move_Loaded;
+           //t.Tick += toastf;
+            // t.Start();
+           //toastTimer.Tick += Move_AboutToComplete;
+           toastf();
+           mapTimer.Tick += Move_Complete;
+           mapTimer.Start();
+        }
+
+        private void Move_Complete(object sender, object e)
+        {
+            this.Frame.Navigate(typeof(AfterArrive));
+        }
+
+        private void Move_Loaded(object sender, RoutedEventArgs e)
+        {
             Storyboard1.Begin();
         }
 
+        
+        private void toastf()
+        {
+            var notifier = ToastNotificationManager.CreateToastNotifier();
+
+            // Make sure notifications are enabled
+            if (notifier.Setting != NotificationSetting.Enabled)
+            {
+                var dialog = new MessageDialog("Notifications are currently disabled");
+                dialog.ShowAsync();
+                return;
+            }
+
+            // Get a toast template and insert a text node containing a message
+            var template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
+            var element = template.GetElementsByTagName("text")[0];
+            element.AppendChild(template.CreateTextNode("Reminder!"));
+
+            // Schedule the toast to appear 30 seconds from now
+            var date = DateTimeOffset.Now.AddSeconds(10);
+            var stn = new ScheduledToastNotification(template, date);
+            notifier.AddToSchedule(stn);
+        }
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.

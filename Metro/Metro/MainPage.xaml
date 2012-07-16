@@ -18,13 +18,17 @@
     		<RowDefinition Height="42*"/>
     		<RowDefinition Height="169*"/>
     	</Grid.RowDefinitions>
-    	<TextBlock x:Name="start_station" HorizontalAlignment="Center" TextWrapping="Wrap" Text="당산역" VerticalAlignment="Center" Grid.Row="1" FontSize="64" TextAlignment="Center" Tapped="Start_Tapped"/>
-<TextBlock  x:Name="end_station" HorizontalAlignment="Center" TextWrapping="Wrap" Text="거시기거시거역" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" TextAlignment="Center" FontSize="64" Tapped="End_Tapped"/>
-<TextBlock x:Name="start_address" HorizontalAlignment="Left" TextWrapping="Wrap" Text="서울시 거시기구 거시기동 당산역" VerticalAlignment="Center" FontSize="29.333" Tapped="Start_Tapped"/>
-<TextBlock x:Name="end_address" HorizontalAlignment="Left" TextWrapping="Wrap" Text="서울시 거시기 거시기 거시기 거시기 남산" VerticalAlignment="Center" Grid.Column="1" FontSize="29.333" Tapped="End_Tapped"/>
+    	<TextBlock x:Name="start_station" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" FontSize="64" TextAlignment="Center" Tapped="Start_Tapped" Text="출발역"/>
+<TextBlock  x:Name="end_station" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" TextAlignment="Center" FontSize="64" Tapped="End_Tapped" Text="도착역"/>
+<TextBlock x:Name="start_address" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="29.333" Tapped="Start_Tapped" Text="출발위치"/>
+<Border Grid.Column="1" HorizontalAlignment="Left" Margin="0,50,0,49" VerticalAlignment="Center" BorderBrush="White" Background="Black" >
+	<TextBlock x:Name="end_address" TextWrapping="Wrap" FontSize="29.333" Tapped="End_Tapped" Text="도착위치" Height="36" Width="118"/>
       
       
-    	<RichTextBlock HorizontalAlignment="Left" Height="461" Margin="10,36,0,0" Grid.Row="2" VerticalAlignment="Top" Width="561.119" Foreground="Black">
+</Border>
+      
+      
+    	<RichTextBlock HorizontalAlignment="Left" Height="461" Margin="10,36,0,0" Grid.Row="2" VerticalAlignment="Top" Width="561.119" Foreground="White">
     		<Paragraph>
     			<Run x:Name="way1" Text="" FontSize="70"/>	
     		</Paragraph>
@@ -33,7 +37,7 @@
 <Run x:Name="way1time2" Text=""  FontSize="50"/>
 			</Paragraph>
     	</RichTextBlock>
-    	<RichTextBlock Grid.Column="1" HorizontalAlignment="Left" Height="459" Margin="48,48,0,0" Grid.Row="2" VerticalAlignment="Top" Width="702" Foreground="Black">
+    	<RichTextBlock Grid.Column="1" HorizontalAlignment="Left" Height="459" Margin="48,48,0,0" Grid.Row="2" VerticalAlignment="Top" Width="702" Foreground="White">
 			<Paragraph>
     			<Run x:Name="way2" Text="" FontSize="70"/>
     		</Paragraph>
@@ -42,7 +46,7 @@
 <Run x:Name="way2time2" Text=""  FontSize="50"/>
             </Paragraph>
     	</RichTextBlock>
-    	<Button Grid.ColumnSpan="2" Content="출발!" HorizontalAlignment="Left" Height="55.5" Margin="571,101.5,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="224.5" Background="White" BorderBrush="Black" Foreground="Black" FontSize="29.333" Click="Button_Click_1"/>
+    	<Button Grid.ColumnSpan="2" Content="출발!" HorizontalAlignment="Left" Height="55.5" Margin="571,101.5,0,0" Grid.Row="1" Grid.RowSpan="2" VerticalAlignment="Top" Width="224.5" Background="White" BorderBrush="Black" Foreground="Black" FontSize="29.333" Click="Button_Click_1" RenderTransformOrigin="0.356000006198883,0.48199999332428"/>
       
     </Grid>
 </Page>

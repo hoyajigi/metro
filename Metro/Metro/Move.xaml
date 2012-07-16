@@ -16,7 +16,7 @@
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">My Application</x:String>
         <Storyboard x:Name="Storyboard1">
-        	<DoubleAnimation Duration="0:0:3" To="825" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="myUserControl1" d:IsOptimized="True"/>
+        	<DoubleAnimation Duration="0:0:14.9" To="825" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="myUserControl1" d:IsOptimized="True"/>
         </Storyboard>
     </Page.Resources>
 
@@ -38,7 +38,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
-            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
+            <TextBlock x:Name="pageTitle" Grid.Column="1" Text="" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
         <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="45" Margin="153,286,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="1101"/>
         <local:MyUserControl1 x:Name="myUserControl1" HorizontalAlignment="Left" Height="256" VerticalAlignment="Top" Width="256" Margin="153,75,0,0" Grid.Row="1" RenderTransformOrigin="0.5,0.5">

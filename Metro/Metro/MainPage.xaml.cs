@@ -18,9 +18,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Data.Json;
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-using NotificationsExtensions.ToastContent;
-using Windows.UI.Notifications;
-using Windows.UI.Popups;
 using System.Net.Http.Headers;
 
 namespace Metro
@@ -32,70 +29,15 @@ namespace Metro
     {
         private Geolocator _geolocator = null;
         private CancellationTokenSource _cts = null;
-        DispatcherTimer t=new DispatcherTimer(){
-            Interval=TimeSpan.FromSeconds(1)
-        };
-
+        
         public MainPage()
         {
             this.InitializeComponent();
-            _geolocator = new Geolocator();
-            t.Tick += toastf;
-           // t.Start();
-           
-            
+            _geolocator = new Geolocator();    
         }
 
         
-        private void toastf(object sender, object e){
-
-            var notifier = ToastNotificationManager.CreateToastNotifier();
-
-            // Make sure notifications are enabled
-            if (notifier.Setting != NotificationSetting.Enabled)
-            {
-                var dialog = new MessageDialog("Notifications are currently disabled");
-                dialog.ShowAsync();
-                return;
-            }
-
-            // Get a toast template and insert a text node containing a message
-            var template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
-            var element = template.GetElementsByTagName("text")[0];
-            element.AppendChild(template.CreateTextNode("Reminder!"));
-
-            // Schedule the toast to appear 30 seconds from now
-            var date = DateTimeOffset.Now.AddSeconds(10);
-            var stn = new ScheduledToastNotification(template, date);
-            notifier.AddToSchedule(stn);
-
-                
-        }
-        private void toastf2()
-        {
-
-            var notifier = ToastNotificationManager.CreateToastNotifier();
-
-            // Make sure notifications are enabled
-            if (notifier.Setting != NotificationSetting.Enabled)
-            {
-                var dialog = new MessageDialog("Notifications are currently disabled");
-                dialog.ShowAsync();
-                return;
-            }
-
-            // Get a toast template and insert a text node containing a message
-            var template = ToastNotificationManager.GetTemplateContent(ToastTemplateType.ToastText01);
-            var element = template.GetElementsByTagName("text")[0];
-            element.AppendChild(template.CreateTextNode("Reminder!"));
-
-            // Schedule the toast to appear 30 seconds from now
-            var date = DateTimeOffset.Now.AddSeconds(5);
-            var stn = new ScheduledToastNotification(template, date);
-            notifier.AddToSchedule(stn);
-            toastf2();
-
-        }
+        
 
         //http://m.seoul.go.kr/traffic/SubInfoNearDetail.do?subSearch=2&station=220&upage=3&flag=3&sflag=1
 
@@ -143,8 +85,9 @@ namespace Metro
     }  
     catch(HttpRequestException e)
     {
-     // Console.WriteLine("\nException Caught!");	
-     // Console.WriteLine("Message :{0} ",e.Message);
+      //Console.WriteLine("\nException Caught!");	
+      //Console.WriteLine("Message :{0} ",e.Message);
+      
     }
 
 
@@ -268,7 +211,7 @@ namespace Metro
         }
         private void Start_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(AfterArrive), "start");
+            this.Frame.Navigate(typeof(Select), "start");
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
